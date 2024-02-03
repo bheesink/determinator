@@ -42,6 +42,17 @@ h1 {
     }
 }
 
+p {
+    text-align: center;
+    font-size: 1rem;
+    color: #fafafa;
+
+    a {
+        color: #fafafa;
+        text-decoration: none;
+    }  
+}
+
 .attendee-list {
 
     &.inactive {
@@ -170,8 +181,22 @@ h1 {
 button {
     cursor: pointer;
     font-size: 1.2rem;
-    margin: 0 0.2rem;
+    margin: 0.2rem;
     border: none;
+    background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;            
     border-radius: 5px;
-    padding: 10px 15px;
+    display: block;
+
+    &:hover {
+        background-position: right center; /* change the direction of the change here */
+        color: #fff;
+        text-decoration: none;
+      }
+
 }
