@@ -1,121 +1,145 @@
 body {
     margin: 0;
     padding: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
-@media (min-width:768px) {
-    .responsive-two-column-grid {
-        display: grid;
-        grid-template-columns: 0.5fr 1.5fr;
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
 
-:root {
-    --form-control-color: rgb(36, 204, 36);
-}
+.wrapper {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    place-content: center;
+    max-width: 1200px;
 
-h1 {
-    text-align: center;
-    font-size: 2rem;
-    color: #fafafa;
-
-    a {
+    h1 {
+        text-align: center;
+        font-size: 2rem;
         color: #fafafa;
-        text-decoration: none;
-    }
-}
-
-p {
-    text-align: center;
-    font-size: 1rem;
-    color: #fafafa;
-
-    a {
-        color: #fafafa;
-        text-decoration: none;
-    }  
-}
-
-.attendee-list {
-
-    &.inactive {
-        display: none;
-    }
-
-    form {
-        display: grid;
-        place-content: center;
-
-        label {
-            font-family: system-ui, sans-serif;
-            font-size: 1.5rem;
-            font-weight: bold;
+    
+        a {
             color: #fafafa;
-            line-height: 1.1;
-            display: grid;
-            grid-template-columns: 1em auto;
-            gap: 0.5em;
-            margin-top: 0.5em;
+            text-decoration: none;
         }
-        
-        input[type="checkbox"] {
-            /* Add if not using autoprefixer */
-            -webkit-appearance: none;
-            /* Remove most all native input styles */
-            appearance: none;
-            /* For iOS < 15 */
-            background-color: var(--form-background);
-            /* Not removed via appearance */
-            margin: 0;
-            font: inherit;
-            color: currentColor;
-            width: 1.15em;
-            height: 1.15em;
-            border: 0.15em solid currentColor;
-            border-radius: 0.15em;
-            transform: translateY(-0.075em);
+    }
+    
+    p {
+        text-align: center;
+        font-size: 1rem;
+        color: #fafafa;
+    
+        a {
+            color: #fafafa;
+            text-decoration: none;
+        }  
+    }    
+
+    .manage-list-screen {
+
+        &.inactive {
+            display: none;
+        }
+
+        .add-attendees-form {
             display: grid;
+            justify-content: center;
+            align-items: center;
             place-content: center;
+            width: 100%;
+
+            &.inactive {
+                display: none;
+            }        
+
+            .input-attendee-form {
+                display: flex;
+
+                input {
+                    font-size: 2rem;
+                    padding: 10px 15px 5px;
+                    transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+                    border: none;
+                    width: 230px;
+                    height: 55px;
+                }    
+            }
         }
 
-        input[type="checkbox"]::before {
-            content: "";
-            width: 0.65em;
-            height: 0.65em;
-            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-            transform: scale(0);
-            transform-origin: bottom left;
-            transition: 120ms transform ease-in-out;
-            box-shadow: inset 1em 1em var(--form-control-color);
-            /* Windows High Contrast Mode */
-            background-color: CanvasText;
+        .attendee-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 1em;
+        
+            .attendee-tag {
+                margin: 0.25em;
+                padding: 0.5em 1em 0.5em 0.5em;
+                cursor: pointer;
+                font-family: system-ui, sans-serif;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #535353;
+                background-color: antiquewhite;
+
+                &.dismissed {
+                    opacity: 0.5;
+                }
+
+                .attendee-remove {
+                    display: inline-block;
+                    position: relative;
+                    bottom: -0.12em;
+                    border-radius: 2em;
+                    margin-right: 0.3em;
+                    width: 1em;
+                    height: 1em;
+                    background-color: #fff;
+
+                    &:hover {
+                        background-color: red;
+
+                        &:after{
+                            color: #fff;
+                        }
+                    }
+
+                    &:after{
+                        position: absolute;
+                        top: -0.15em;
+                        left: 0.17em;
+                        content: "\00d7"; /* This will render the 'X' */
+                        color: red;
+                    }
+                }
+            }
         }
 
-        input[type="checkbox"]:checked::before {
-            transform: scale(1);
+        .buttons {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            place-content: center;
+            width: 100%;
+            margin: 1rem 0 2rem 0;
         }
-
-        input[type="checkbox"]:focus {
-            outline: max(2px, 0.15em) solid currentColor;
-            outline-offset: max(2px, 0.15em);
-        }    
     }
 }
 
@@ -131,20 +155,14 @@ p {
 }
 
 #slot-machine {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-
     &.inactive {
         display: none;
     }
-
+    
     .spinner {
         background: #fafafa;
-        width: 90%;
         height: 110px;
+        width: 100%;
         overflow: hidden;
         border-radius: 5px;
         margin: 5px;
@@ -158,7 +176,7 @@ p {
                 top: -2090px;
             }
         }
-        
+
         .box {
             display: flex;
             justify-content: center;
@@ -166,6 +184,8 @@ p {
             font-size: 5rem;
             width: 100%;
             height: 110px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
 
             &.blink {
                 animation: blink 0.5s linear infinite;
@@ -174,23 +194,16 @@ p {
     }
 }
 
-.buttons {
-    margin: 1rem 0 2rem 0;
-}
-
 button {
     cursor: pointer;
     font-size: 1.2rem;
-    margin: 0.2rem;
     border: none;
     background-image: linear-gradient(to right, #4776E6 0%, #8E54E9  51%, #4776E6  100%);
-    padding: 15px 45px;
+    padding: 15px;
     text-align: center;
     text-transform: uppercase;
-    transition: 0.5s;
     background-size: 200% auto;
     color: white;            
-    border-radius: 5px;
     display: block;
 
     &:hover {
@@ -198,5 +211,4 @@ button {
         color: #fff;
         text-decoration: none;
       }
-
 }
