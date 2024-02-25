@@ -138,11 +138,6 @@
 
         // start spinning animation
         boxes.classList.add('spinning');
-
-        // start blinking the "winners" name
-        boxes.addEventListener('animationend', () => {
-            boxes.lastChild.classList.add('blink');
-        });
     }
   
     function shuffleArray([...arr]) {
